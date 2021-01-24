@@ -3,8 +3,8 @@ Independent Study, Spring 2021 - Solving Scramble Squares Puzzles using DFS back
 
 Research Papers:
 
-1. Using Backtracking to Solve Scramble Squares Puzzles - (https://www.cs.umb.edu/~eb/sam/maccabees/backtrackingPaper.pdf)
-2. A Graph Theoretical Approach to Solving Scramble Squares Puzzles - (http://users.wfu.edu/masonsk/scramblesquares.pdf)
+1. Using Backtracking to Solve Scramble Squares Puzzles (https://www.cs.umb.edu/~eb/sam/maccabees/backtrackingPaper.pdf)
+2. A Graph Theoretical Approach to Solving Scramble Squares Puzzles (http://users.wfu.edu/masonsk/scramblesquares.pdf)
 
 Deliverables:
 
