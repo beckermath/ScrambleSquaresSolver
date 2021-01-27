@@ -26,4 +26,4 @@ puzzles with repetitions. Brought up in section 4.1 of the 2nd research paper, r
 
 Puzzle:
 
-![](images/filename%20puzzle.png)
+![](images/puzzle.png)
