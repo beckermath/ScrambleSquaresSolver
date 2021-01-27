@@ -23,3 +23,7 @@ two-sided puzzles.
 
 3/21 - 4/4: Lastly, and likely most difficult, would be an investigation into the changes to the algorithm required to solve
 puzzles with repetitions. Brought up in section 4.1 of the 2nd research paper, repetitions are not handled by the current algorithm, and would require additional conditions to the algorithm and changes to the proof.
+
+Puzzle:
+
+![](images/filename%20puzzle.png)
