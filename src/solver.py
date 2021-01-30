@@ -84,6 +84,7 @@ board.append(piece9)
 
 def main():
     print("Main function")
+    print("Displaying graph...")
     print_graph(graph)
 
 if __name__ == '__main__':
