@@ -6,10 +6,10 @@ I implemented the backtracking solution following the algorithm given in the fir
 
 I represented pieces in my program using Uppercase->Lowercase letters to represent the split tops and bottoms of pictures
 
-  Star = Aa
-  Cone = Bb
-  House = Cc
-  Face = Dd
+  Star = Aa<br/>
+  Cone = Bb<br/>
+  House = Cc<br/>
+  Face = Dd<br/>
  
 The solution ordered the pieces as follows
 
@@ -19,14 +19,14 @@ The solution ordered the pieces as follows
  
   and gives the rotation of the piece foolowing bottom->left->top->right
  
-  Orientation
+  Orientation<br/>
 
-  0: bottom edge of piece 
-  1: left edge of piece
-  2: top edge of piece
-  3: right edge of piece
+  0: bottom edge of piece <br/>
+  1: left edge of piece<br/>
+  2: top edge of piece<br/>
+  3: right edge of piece<br/>
   
-  Example: Piece in solution - dBaD
+  Example: Piece in solution - dBaD<br/>
            top edge 
               a
   left edge  B D  right edge 
@@ -35,16 +35,16 @@ The solution ordered the pieces as follows
          
 When running puzzle.py the output given in this form:
 
-  Star = Aa, Cone = Bb, House = Cc, Face = Dd
-  bottom:0 left:1 top:2 right:3
+  Star = Aa, Cone = Bb, House = Cc, Face = Dd<br/>
+  bottom:0 left:1 top:2 right:3<br/>
 
-  1 2 3
-  4 5 6
-  7 8 9
+  1 2 3<br/>
+  4 5 6<br/>
+  7 8 9<br/>
 
-  dBaD   BdAc   bCDB
-  BCDd   CDbB   DbBC
-  Bdba   CAcb   ABda
+  dBaD   BdAc   bCDB<br/>
+  BCDd   CDbB   DbBC<br/>
+  Bdba   CAcb   ABda<br/>
   
 Arranging the pieces matching them with their position and orientation in accordance with the example above will build the solution.
 
