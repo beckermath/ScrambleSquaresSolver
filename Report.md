@@ -2,7 +2,7 @@ Deliverable 1:
 
 I implemented the backtracking solution following the algorithm given in the first research paper mentioned in the README.md
 
-  https://www.cs.umb.edu/~eb/sam/maccabees/backtrackingPaper.pdf
+https://www.cs.umb.edu/~eb/sam/maccabees/backtrackingPaper.pdf
 
 I represented pieces in my program using Uppercase->Lowercase letters to represent the split tops and bottoms of pictures
 
@@ -17,7 +17,7 @@ The solution ordered the pieces as follows
   4 5 6<br/>
   7 8 9<br/>
  
-  and gives the rotation of the piece foolowing bottom->left->top->right
+  and gives the rotation of the piece following bottom->left->top->right
  
   Orientation<br/>
 
