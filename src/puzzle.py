@@ -1,5 +1,5 @@
-from graph import add_vertex, add_edge, print_graph
 from random import shuffle
+from graph_display import build_solution_graph
 
 #
 #   Star = Aa
@@ -22,18 +22,11 @@ PIECES = [
 #   a   c   c   d
 #
 
-graph = {}
-add_vertex(graph, 'A')
-add_vertex(graph, 'a')
-add_vertex(graph, 'B')
-add_vertex(graph, 'b')
-add_vertex(graph, 'C')
-add_vertex(graph, 'c')
-add_vertex(graph, 'D')
-add_vertex(graph, 'd')
-
 def main():
-    shuffle(PIECES)
+    # If you choose to not shuffle, solution found will be the current order of PIECES
+    # matching solution in images/puzzle.png with graph representation in images/example_graph.png
+    
+    # shuffle(PIECES)
     empty_board = [None for i in range(9)]
     solvable, solution = solve(PIECES, empty_board)
 
@@ -92,7 +85,8 @@ def orientations(text):
 
 def print_solution(solution):
     print("Star = Aa, Cone = Bb, House = Cc, Face = Dd")
-    print("bottom left top right\n")
+    print("bottom:0 left:1 top:2 right:3\n")
+    print("1 2 3\n4 5 6\n7 8 9\n")
     print("{}   {}   {}\n{}   {}   {}\n{}   {}   {}".format(
         solution[0],
         solution[1],
@@ -105,8 +99,7 @@ def print_solution(solution):
         solution[8],
     ))
 
-def build_solution_graph(solution):
-    print("build solution graphs")
+
 
 if __name__ == '__main__':
     main()
