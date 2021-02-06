@@ -13,11 +13,11 @@ I represented pieces in my program using Uppercase->Lowercase letters to represe
  
 The solution ordered the pieces as follows
 
-  1 2 3
-  4 5 6
-  7 8 9
+  1 2 3<br/>
+  4 5 6<br/>
+  7 8 9<br/>
  
- and gives the rotation of the piece foolowing bottom->left->top->right
+  and gives the rotation of the piece foolowing bottom->left->top->right
  
   Orientation
 
@@ -25,9 +25,8 @@ The solution ordered the pieces as follows
   1: left edge of piece
   2: top edge of piece
   3: right edge of piece
-
+  
   Example: Piece in solution - dBaD
-
            top edge 
               a
   left edge  B D  right edge 
