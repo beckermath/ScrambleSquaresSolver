@@ -28,8 +28,8 @@ The solution ordered the pieces as follows
   
   Example: Piece in solution - dBaD<br/>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top edge a<br/>
-  &nbsp;&nbsp;left edge  B D  right edge <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;left edge  B D  right edge <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bottom edge<br/>
          
 When running puzzle.py the output given in this form:
