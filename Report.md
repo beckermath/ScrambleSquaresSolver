@@ -27,11 +27,10 @@ The solution ordered the pieces as follows
   3: right edge of piece<br/>
   
   Example: Piece in solution - dBaD<br/>
-           top edge 
-              a
-  left edge  B D  right edge 
-              d
-         bottom edge
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;top edge a<br/>
+  &nbsp;&nbsp;left edge  B D  right edge <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bottom edge<br/>
          
 When running puzzle.py the output given in this form:
 
