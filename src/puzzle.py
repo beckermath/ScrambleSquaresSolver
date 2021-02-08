@@ -1,6 +1,7 @@
 from random import shuffle
 from graph_display import build_solution_graph
-
+import time
+ 
 #
 #   Star = Aa
 #   Cone = Bb
@@ -26,13 +27,19 @@ def main():
     # If you choose to not shuffle, solution found will be the current order of PIECES
     # matching solution in images/puzzle.png with graph representation in images/example_graph.png
     
-    # shuffle(PIECES)
+    shuffle(PIECES)
     empty_board = [None for i in range(9)]
+
+    start_time = time.time()
     solvable, solution = solve(PIECES, empty_board)
+    end_time = time.time()
 
     if(solvable):
-        print_solution(solution)
+        print_solution(solution, start_time, end_time)
         build_solution_graph(solution)
+    else:
+        print("provided board is unsolvable")
+
 
 BOTTOM, LEFT, TOP, RIGHT = 0, 1, 2, 3
 
@@ -83,11 +90,12 @@ def orientations(text):
     for idx, _ in enumerate(text):
         yield text[idx:] + text[0:idx]
 
-def print_solution(solution):
+def print_solution(solution, start_time, end_time):
+
     print("Star = Aa, Cone = Bb, House = Cc, Face = Dd")
     print("bottom:0 left:1 top:2 right:3\n")
     print("1 2 3\n4 5 6\n7 8 9\n")
-    print("{}   {}   {}\n{}   {}   {}\n{}   {}   {}".format(
+    print("{}   {}   {}\n{}   {}   {}\n{}   {}   {}\n".format(
         solution[0],
         solution[1],
         solution[2],
@@ -98,6 +106,9 @@ def print_solution(solution):
         solution[7],
         solution[8],
     ))
+
+    print("Execution time: %s seconds" % (end_time - start_time))
+
 
 
 
