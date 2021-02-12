@@ -1,5 +1,6 @@
 from random import shuffle
 from graph_display import build_solution_graph
+from center import maximize_center
 import time
  
 #
@@ -26,7 +27,7 @@ PIECES = [
 def main():
     # If you choose to not shuffle, solution found will be the current order of PIECES
     # matching solution in images/puzzle.png with graph representation in images/example_graph.png
-    
+    maximize_center(PIECES)
     shuffle(PIECES)
     empty_board = [None for i in range(9)]
 
