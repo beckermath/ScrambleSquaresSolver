@@ -27,9 +27,12 @@ PIECES = [
 def main():
     # If you choose to not shuffle, solution found will be the current order of PIECES
     # matching solution in images/puzzle.png with graph representation in images/example_graph.png
-    maximize_center(PIECES)
+
     shuffle(PIECES)
     empty_board = [None for i in range(9)]
+
+    # sorts the pieces in order of their potential to be the middle piece
+    CENTER_MAXIMIZED_PIECES = maximize_center(PIECES)
 
     start_time = time.time()
     solvable, solution = solve(PIECES, empty_board)
@@ -62,7 +65,14 @@ def solve(pieces, board):
     if not pieces:
         return True, board
 
+
+    # spiral function transforms the index to start with the middle piece
+    # 7 8 9
+    # 6 1 2 
+    # 5 4 3
+
     num = board.index(None)
+    num_spiral = spiral(num)
 
     for piece_chosen, remainder in options(pieces):
         for piece in orientations(piece_chosen):
@@ -81,7 +91,7 @@ def solve(pieces, board):
                     return True, solved_board
 
     return False, None 
-
+  
 def options(items):
     for idx, choice in enumerate(items):
         remainder = items[0:idx] + items[idx + 1:]
@@ -90,6 +100,35 @@ def options(items):
 def orientations(text):
     for idx, _ in enumerate(text):
         yield text[idx:] + text[0:idx]
+
+def spiral(num):
+
+    #
+    #  1 2 3    7 8 9
+    #  4 5 6 -> 6 1 2 
+    #  7 8 9    5 4 3
+    #
+    # programmed the lazy way
+    
+    if num is 0:
+        return 4
+    if num is 1:
+        return 5
+    if num is 2:
+        return 8
+    if num is 3:
+        return 7
+    if num is 4:
+        return 6
+    if num is 5:
+        return 3
+    if num is 6:
+        return 0
+    if num is 7:
+        return 1
+    if num is 8:
+        return 2
+
 
 def print_solution(solution, start_time, end_time):
 
@@ -109,8 +148,6 @@ def print_solution(solution, start_time, end_time):
     ))
 
     print("Execution time: %s seconds" % (end_time - start_time))
-
-
 
 
 if __name__ == '__main__':
