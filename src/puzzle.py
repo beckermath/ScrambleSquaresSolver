@@ -10,10 +10,17 @@ import time
 #   Face = Dd
 #
 
+
+# PIECES = [
+#     'dBaD', 'BdAc', 'bCDB',
+#     'BCDd', 'CDbB', 'DbBC',
+#     'Bdba', 'CAcb', 'ABda',
+# ]
+
 PIECES = [
+    'CDbB', 'DbBC', 'ABda',
+    'CAcb', 'Bdba', 'BCDd',
     'dBaD', 'BdAc', 'bCDB',
-    'BCDd', 'CDbB', 'DbBC',
-    'Bdba', 'CAcb', 'ABda',
 ]
 
 #
@@ -35,12 +42,13 @@ def main():
     CENTER_MAXIMIZED_PIECES = maximize_center(PIECES)
 
     start_time = time.time()
-    solvable, solution = solve(PIECES, empty_board)
+    solvable, solution = solve(CENTER_MAXIMIZED_PIECES, empty_board)
     end_time = time.time()
 
     if(solvable):
+        print(solution)
         print_solution(solution, start_time, end_time)
-        build_solution_graph(solution)
+        # build_solution_graph(solution)
     else:
         print("provided board is unsolvable")
 
@@ -65,7 +73,6 @@ def solve(pieces, board):
     if not pieces:
         return True, board
 
-
     # spiral function transforms the index to start with the middle piece
     # 7 8 9
     # 6 1 2 
@@ -77,12 +84,13 @@ def solve(pieces, board):
     for piece_chosen, remainder in options(pieces):
         for piece in orientations(piece_chosen):
             next_board = board[0:num] + [piece] + board[num + 1:]
+            transformed_board = transform_board(next_board)
 
             piece_fits = True
-            for src_dir, other, dest_dir in SQUARE_LINKS[num]:
-                if board[other]:
-                    edge1 = next_board[num][src_dir]
-                    edge2 = next_board[other][dest_dir]
+            for src_dir, other, dest_dir in SQUARE_LINKS[num_spiral]:
+                if transformed_board[other]:
+                    edge1 = transformed_board[num_spiral][src_dir]
+                    edge2 = transformed_board[other][dest_dir]
                     piece_fits &= (edge1.lower() == edge2.lower() and (edge1 == edge1.upper()) == (edge2 == edge2.lower()))
 
             if piece_fits:
@@ -91,6 +99,23 @@ def solve(pieces, board):
                     return True, solved_board
 
     return False, None 
+
+def transform_board(board):
+    transformed = [None for i in range(9)]
+
+    transformed[0] = board[6]
+    transformed[1] = board[7]
+    transformed[2] = board[8]
+    transformed[3] = board[5]
+    transformed[4] = board[0]
+    transformed[5] = board[1]
+    transformed[6] = board[4]
+    transformed[7] = board[3]
+    transformed[8] = board[2]
+
+    return transformed
+
+
   
 def options(items):
     for idx, choice in enumerate(items):
@@ -136,18 +161,31 @@ def print_solution(solution, start_time, end_time):
     print("bottom:0 left:1 top:2 right:3\n")
     print("1 2 3\n4 5 6\n7 8 9\n")
     print("{}   {}   {}\n{}   {}   {}\n{}   {}   {}\n".format(
-        solution[0],
-        solution[1],
-        solution[2],
-        solution[3],
-        solution[4],
-        solution[5],
+        # solution[0],
+        # solution[1],
+        # solution[2],
+        # solution[3],
+        # solution[4],
+        # solution[5],
+        # solution[6],
+        # solution[7],
+        # solution[8],
+
         solution[6],
         solution[7],
         solution[8],
+        solution[5],
+        solution[0],
+        solution[1],
+        solution[4],
+        solution[3],
+        solution[2],
+        
     ))
 
     print("Execution time: %s seconds" % (end_time - start_time))
+
+
 
 
 if __name__ == '__main__':
