@@ -39,7 +39,8 @@ def maximize_center(pieces):
 
     # Pieces sorted in order of their potential to be the middle piece, based on number paired with them
     sorted_value_indicies = sorted(value_indicies.items(), key=lambda x: x[1], reverse=True)
-    # print(sorted_value_indicies)
+    print("\nPieces sorted in order of potential to be middle piece (paired with value index)")
+    print(sorted_value_indicies)
     
     new_pieces = []
     for i in range (9):

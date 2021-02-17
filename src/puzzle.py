@@ -1,4 +1,6 @@
 from random import shuffle
+from transform import transform_board, untransform_board, spiral, unspiral
+from puzzle_display import print_solution
 from graph_display import build_solution_graph
 from center import maximize_center
 import time
@@ -10,45 +12,35 @@ import time
 #   Face = Dd
 #
 
-
-# PIECES = [
-#     'dBaD', 'BdAc', 'bCDB',
-#     'BCDd', 'CDbB', 'DbBC',
-#     'Bdba', 'CAcb', 'ABda',
-# ]
-
 PIECES = [
-    'CDbB', 'DbBC', 'ABda',
-    'CAcb', 'Bdba', 'BCDd',
     'dBaD', 'BdAc', 'bCDB',
+    'BCDd', 'CDbB', 'DbBC',
+    'Bdba', 'CAcb', 'ABda',
 ]
 
-#
-#   Initializing graph with 8 vertiticies, representing the two sides of the 4 puzzle images
-#
-#   A   B   C   D
-#
-#   a   c   c   d
-#
-
 def main():
-    # If you choose to not shuffle, solution found will be the current order of PIECES
-    # matching solution in images/puzzle.png with graph representation in images/example_graph.png
+    global PIECES
+    selection = input("Organize pieces to maximize center? (y/n)\n")
+    display_graph = input("Display solution graph? (y/n)\n")
+    
+    if(selection =="y"):
+        PIECES = maximize_center(PIECES)
+    else:
+        shuffle(PIECES)
+        print("Pieces in random order")
+        print(PIECES)
 
-    shuffle(PIECES)
     empty_board = [None for i in range(9)]
 
-    # sorts the pieces in order of their potential to be the middle piece
-    CENTER_MAXIMIZED_PIECES = maximize_center(PIECES)
-
     start_time = time.time()
-    solvable, solution = solve(CENTER_MAXIMIZED_PIECES, empty_board)
+    solvable, solution = solve(PIECES, empty_board)
     end_time = time.time()
 
     if(solvable):
-        print(solution)
-        print_solution(solution, start_time, end_time)
-        # build_solution_graph(solution)
+        print_solution(transform_board(solution), start_time, end_time)
+        if display_graph == "y":
+            build_solution_graph(transform_board(solution))
+        
     else:
         print("provided board is unsolvable")
 
@@ -73,11 +65,6 @@ def solve(pieces, board):
     if not pieces:
         return True, board
 
-    # spiral function transforms the index to start with the middle piece
-    # 7 8 9
-    # 6 1 2 
-    # 5 4 3
-
     num = board.index(None)
     num_spiral = spiral(num)
 
@@ -100,23 +87,6 @@ def solve(pieces, board):
 
     return False, None 
 
-def transform_board(board):
-    transformed = [None for i in range(9)]
-
-    transformed[0] = board[6]
-    transformed[1] = board[7]
-    transformed[2] = board[8]
-    transformed[3] = board[5]
-    transformed[4] = board[0]
-    transformed[5] = board[1]
-    transformed[6] = board[4]
-    transformed[7] = board[3]
-    transformed[8] = board[2]
-
-    return transformed
-
-
-  
 def options(items):
     for idx, choice in enumerate(items):
         remainder = items[0:idx] + items[idx + 1:]
@@ -125,68 +95,6 @@ def options(items):
 def orientations(text):
     for idx, _ in enumerate(text):
         yield text[idx:] + text[0:idx]
-
-def spiral(num):
-
-    #
-    #  1 2 3    7 8 9
-    #  4 5 6 -> 6 1 2 
-    #  7 8 9    5 4 3
-    #
-    # programmed the lazy way
-    
-    if num is 0:
-        return 4
-    if num is 1:
-        return 5
-    if num is 2:
-        return 8
-    if num is 3:
-        return 7
-    if num is 4:
-        return 6
-    if num is 5:
-        return 3
-    if num is 6:
-        return 0
-    if num is 7:
-        return 1
-    if num is 8:
-        return 2
-
-
-def print_solution(solution, start_time, end_time):
-
-    print("Star = Aa, Cone = Bb, House = Cc, Face = Dd")
-    print("bottom:0 left:1 top:2 right:3\n")
-    print("1 2 3\n4 5 6\n7 8 9\n")
-    print("{}   {}   {}\n{}   {}   {}\n{}   {}   {}\n".format(
-        # solution[0],
-        # solution[1],
-        # solution[2],
-        # solution[3],
-        # solution[4],
-        # solution[5],
-        # solution[6],
-        # solution[7],
-        # solution[8],
-
-        solution[6],
-        solution[7],
-        solution[8],
-        solution[5],
-        solution[0],
-        solution[1],
-        solution[4],
-        solution[3],
-        solution[2],
-        
-    ))
-
-    print("Execution time: %s seconds" % (end_time - start_time))
-
-
-
 
 if __name__ == '__main__':
     main()
