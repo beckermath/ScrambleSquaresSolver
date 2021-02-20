@@ -1,12 +1,13 @@
-# Deliverable 2 {#deliverable-2 .unnumbered}
+# Deliverable 2
 
 The idea of maximizing the center is to identify pieces that are most
 likely to be middle pieces and check those pieces first, solving the
 puzzle in a spiral pattern.
 
-8 9\
+7 8 9\
 6 1 2\
-5 4 3\
+5 4 3
+
 Determining which pieces have the most potential to be the middle piece
 I used this method:
 
@@ -43,12 +44,14 @@ order, here are the results:
 0.03738\
 0.03754\
 Average: 0.04123\
+
 **Random order:**\
 0.05226\
 0.00350\
 0.05193\
 0.05546\
 Average: 0.04219\
+
 Looking at the results, ordering by middle piece did just barely beat
 the random ordering, but the results are not that impressive. You can
 see the third trial taken with random ordering was very fast. This was a
