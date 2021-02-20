@@ -45,14 +45,14 @@ order, here are the results:
 0.03701\
 0.03738\
 0.03754\
-Average: 0.04123\
+Average: 0.04123
 
 **Random order:**\
 0.05226\
 0.00350\
 0.05193\
 0.05546\
-Average: 0.04219\
+Average: 0.04219
 
 Looking at the results, ordering by middle piece did just barely beat
 the random ordering, but the results are not that impressive. You can
