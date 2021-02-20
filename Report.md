@@ -86,7 +86,7 @@ Now when considering the pieces:
 PIECES = \[ 'dBaD', 'BdAc', 'bCDB', 'BCDd', 'CDbB', 'DbBC', 'Bdba',
 'CAcb', 'ABda' ,\]
 
-We can reorder them with their value index:
+We can reorder them with their value index (this work is done in center.py):
 
 PIECES = \[('Bdba', 21), ('bCDB', 20), ('CDbB', 20), ('DbBC', 20), ('dBaD', 18), ('BdAc', 18), ('CAcb', 18), ('BCDd', 17), ('ABda', 16)\]
 
