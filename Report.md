@@ -22,9 +22,11 @@ I used this method:
 Now when considering the pieces:
 
 PIECES = \[ 'dBaD', 'BdAc', 'bCDB', 'BCDd', 'CDbB', 'DbBC', 'Bdba',
-'CAcb', 'ABda', \]
+'CAcb', 'ABda' ,\]
 
 We can reorder them with their value index:
+
+PIECES = \[('Bdba', 21), ('bCDB', 20), ('CDbB', 20), ('DbBC', 20), ('dBaD', 18), ('BdAc', 18), ('CAcb', 18), ('BCDd', 17), ('ABda', 16)\]
 
 Pieces with the higher value index have a higher chance of being the
 middle piece and allow the algorithm to finish slightly faster compared
