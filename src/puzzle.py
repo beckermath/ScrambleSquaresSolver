@@ -1,6 +1,10 @@
 from random import shuffle
+from transform import transform_board, untransform_board, spiral, unspiral
+from puzzle_display import print_solution
 from graph_display import build_solution_graph
-
+from center import maximize_center
+import time
+ 
 #
 #   Star = Aa
 #   Cone = Bb
@@ -14,25 +18,32 @@ PIECES = [
     'Bdba', 'CAcb', 'ABda',
 ]
 
-#
-#   Initializing graph with 8 vertiticies, representing the two sides of the 4 puzzle images
-#
-#   A   B   C   D
-#
-#   a   c   c   d
-#
-
 def main():
-    # If you choose to not shuffle, solution found will be the current order of PIECES
-    # matching solution in images/puzzle.png with graph representation in images/example_graph.png
+    global PIECES
+    selection = input("Organize pieces to maximize center? (y/n)\n")
+    display_graph = input("Display solution graph? (y/n)\n")
     
-    # shuffle(PIECES)
+    if(selection =="y"):
+        PIECES = maximize_center(PIECES)
+    else:
+        shuffle(PIECES)
+        print("Pieces in random order")
+        print(PIECES)
+
     empty_board = [None for i in range(9)]
+
+    start_time = time.time()
     solvable, solution = solve(PIECES, empty_board)
+    end_time = time.time()
 
     if(solvable):
-        print_solution(solution)
-        build_solution_graph(solution)
+        print_solution(transform_board(solution), start_time, end_time)
+        if display_graph == "y":
+            build_solution_graph(transform_board(solution))
+        
+    else:
+        print("provided board is unsolvable")
+
 
 BOTTOM, LEFT, TOP, RIGHT = 0, 1, 2, 3
 
@@ -55,16 +66,18 @@ def solve(pieces, board):
         return True, board
 
     num = board.index(None)
+    num_spiral = spiral(num)
 
     for piece_chosen, remainder in options(pieces):
         for piece in orientations(piece_chosen):
             next_board = board[0:num] + [piece] + board[num + 1:]
+            transformed_board = transform_board(next_board)
 
             piece_fits = True
-            for src_dir, other, dest_dir in SQUARE_LINKS[num]:
-                if board[other]:
-                    edge1 = next_board[num][src_dir]
-                    edge2 = next_board[other][dest_dir]
+            for src_dir, other, dest_dir in SQUARE_LINKS[num_spiral]:
+                if transformed_board[other]:
+                    edge1 = transformed_board[num_spiral][src_dir]
+                    edge2 = transformed_board[other][dest_dir]
                     piece_fits &= (edge1.lower() == edge2.lower() and (edge1 == edge1.upper()) == (edge2 == edge2.lower()))
 
             if piece_fits:
@@ -82,24 +95,6 @@ def options(items):
 def orientations(text):
     for idx, _ in enumerate(text):
         yield text[idx:] + text[0:idx]
-
-def print_solution(solution):
-    print("Star = Aa, Cone = Bb, House = Cc, Face = Dd")
-    print("bottom:0 left:1 top:2 right:3\n")
-    print("1 2 3\n4 5 6\n7 8 9\n")
-    print("{}   {}   {}\n{}   {}   {}\n{}   {}   {}".format(
-        solution[0],
-        solution[1],
-        solution[2],
-        solution[3],
-        solution[4],
-        solution[5],
-        solution[6],
-        solution[7],
-        solution[8],
-    ))
-
-
 
 if __name__ == '__main__':
     main()
