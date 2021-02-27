@@ -18,13 +18,22 @@ PIECES = [
     'Bdba', 'CAcb', 'ABda',
 ]
 
+PIECES = [
+    'ABab', 'aBcC', 'dcbc', 'ACdB',
+    'dBaD', 'BdAc', 'bCDB', 'BbaC',
+    'BCDd', 'CDbB', 'DbBC', 'dcba',
+    'Bdba', 'CAcb', 'ABda', 'bADd'
+]
+
 def main():
     global PIECES
     selection = input("Organize pieces to maximize center? (y/n)\n")
     display_graph = input("Display solution graph? (y/n)\n")
     
-    if(selection =="y"):
+    if(selection == "y"):
         PIECES = maximize_center(PIECES)
+
+
     else:
         shuffle(PIECES)
         print("Pieces in random order")
@@ -60,6 +69,38 @@ SQUARE_LINKS = (
     ((LEFT, 6, RIGHT), (TOP, 4, BOTTOM), (RIGHT, 8, LEFT)),
     ((LEFT, 7, RIGHT), (TOP, 5, BOTTOM)),
 )
+
+# DOUBLE CHECK THIS
+SQUARE_LINKS = (
+    # TOP ROW
+    ((RIGHT, 1, LEFT), (BOTTOM, 4, TOP),),
+    ((LEFT, 0, RIGHT), (BOTTOM, 5, TOP), (RIGHT, 2, LEFT)),
+    ((LEFT, 1, RIGHT), (BOTTOM, 6, TOP), (RIGHT, 3, LEFT)),
+    ((LEFT, 2, RIGHT), (BOTTOM, 7, TOP)),
+
+    # MIDDLE ROW 1
+
+    ((TOP, 0, BOTTOM), (RIGHT, 5, LEFT), (BOTTOM, 8, TOP),),
+    ((LEFT, 4, RIGHT), (TOP, 1, BOTTOM), (RIGHT, 6, LEFT), (BOTTOM, 9, TOP)),
+    ((LEFT, 5, RIGHT), (TOP, 2, BOTTOM), (RIGHT, 7, LEFT), (BOTTOM, 10, TOP)),
+    ((LEFT, 6, RIGHT), (TOP, 3, BOTTOM), (BOTTOM, 11, TOP)),
+
+    # MIDDLE ROW 2
+
+    ((TOP, 4, BOTTOM), (RIGHT, 9, LEFT), (BOTTOM, 12, TOP),),
+    ((LEFT, 8, RIGHT), (TOP, 5, BOTTOM), (RIGHT, 10, LEFT), (BOTTOM, 13, TOP)),
+    ((LEFT, 9, RIGHT), (TOP, 6, BOTTOM), (RIGHT, 11, LEFT), (BOTTOM, 14, TOP)),
+    ((LEFT, 10, RIGHT), (TOP, 7, BOTTOM), (BOTTOM, 15, TOP)),
+
+    # BOTTOM ROW 
+
+    ((TOP, 8, BOTTOM), (RIGHT, 13, LEFT)),
+    ((LEFT, 12, RIGHT), (TOP, 9, BOTTOM), (RIGHT, 14, LEFT)),
+    ((LEFT, 13, RIGHT), (TOP, 10, BOTTOM), (RIGHT, 15, LEFT)),
+    ((LEFT, 14, RIGHT), (TOP, 11, BOTTOM)),
+)
+
+
 
 def solve(pieces, board):
     if not pieces:

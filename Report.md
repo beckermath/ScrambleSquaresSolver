@@ -135,3 +135,11 @@ ordered. You then get to select whether or not you want to generate the
 solution graph from deliverable 1, and the puzzle is displayed in a much
 more helpful grid format along with the execution time of the run.
 
+# Deliverable 3
+
+First I need to create a 4x4 or 5x5 puzzle with a solution since none currently exist anywhere I can find.
+
+Here is that puzzle:
+
+
+
