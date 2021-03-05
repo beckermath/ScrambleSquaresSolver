@@ -1,18 +1,5 @@
 def print_solution(solution, start_time, end_time):
-    print("Star = Aa, Cone = Bb, House = Cc, Face = Dd")
-    print("bottom:0 left:1 top:2 right:3\n")
-    print("1 2 3\n4 5 6\n7 8 9\n")
-    print("{}   {}   {}\n{}   {}   {}\n{}   {}   {}\n".format(
-        solution[0],
-        solution[1],
-        solution[2],
-        solution[3],
-        solution[4],
-        solution[5],
-        solution[6],
-        solution[7],
-        solution[8],
-    ))
+    print("\nStar = Aa, Cone = Bb, House = Cc, Face = Dd")
 
     print("|{}\n|   {}   |   {}   |   {}   |\n| {}   {} | {}   {} | {}   {} |\n|   {}   |   {}   |   {}   |\n|{}\n|   {}   |   {}   |   {}   |\n| {}   {} | {}   {} | {}   {} |\n|   {}   |   {}   |   {}   |\n|{}\n|   {}   |   {}   |   {}   |\n| {}   {} | {}   {} | {}   {} |\n|   {}   |   {}   |   {}   |\n|{}\n".format(
         "-----------------------|",
@@ -62,5 +49,31 @@ def print_solution(solution, start_time, end_time):
 
         "-----------------------|"
     ))
+
+    print("Execution time: %s seconds" % (end_time - start_time))
+
+def print_big_solution(solution, start_time, end_time):
+    print("\nbig solution is not printed nicely yet")
+    print("Star = Aa, Cone = Bb, House = Cc, Face = Dd")
+
+    print("\n{} {} {} {}\n{} {} {} {}\n{} {} {} {}\n{} {} {} {}\n".format(
+        solution[0],
+        solution[1],
+        solution[2],
+        solution[3],
+        solution[4],
+        solution[5],
+        solution[6],
+        solution[7],
+        solution[8],
+        solution[9],
+        solution[10],
+        solution[11],
+        solution[12],
+        solution[13],
+        solution[14],
+        solution[15],
+    ))
+
 
     print("Execution time: %s seconds" % (end_time - start_time))
