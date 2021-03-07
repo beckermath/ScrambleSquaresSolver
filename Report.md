@@ -139,29 +139,36 @@ more helpful grid format along with the execution time of the run.
 
 First I need to create a 4x4 or 5x5 puzzle with a solution since none currently exist anywhere I can find.
 
-Here is the 4x4 puzzle I decided on taking into account the added pieces value indicies to make a balanced puzzle. The new 4x4 puzzle has the old 3x3 puzzle as its bottom right corner
+Here is the 4x4 puzzle I decided on, taking into account the added pieces value indicies to make a balanced puzzle. The new 4x4 puzzle has the old 3x3 puzzle as its bottom right corner
 
-ABab aBcC dcbc ACdB
-dBaD BdAc bCDB BbaC
-BCDd CDbB DbBC dcba
-Bdba CAcb ABda bADd
+ABab aBcC dcbc ACdB\
+dBaD BdAc bCDB BbaC\
+BCDd CDbB DbBC dcba\
+Bdba CAcb ABda bADd\
 
 Solving the 4x4 puzzle in a spiral as I was doing for the 3x3 puzzle to implement maximize the center in Deliverable 3 doesnt work the same for the 4x4 puzzle. The 4x4 puzzle has an even number of pieces and really has 4 middle pieces. For this reason I brought back the old method of solving the puzzle which places the pieces in this order and havent implemented maximizing the center for the bigger puzzle.
 
- 1  2  3  4
- 5  6  7  8
- 9 10 11 12
-13 14 15 16
+ 1  2  3  4\
+ 5  6  7  8\
+ 9 10 11 12\
+13 14 15 16\
+
+Here are the value indicies of the pieces in the 4x4 puzzle. For the 4x4 puzzle the value the value indicies become very good at predicting the 4 middle pieces.
+
+```
+[('bCDB', 37), ('CDbB', 37), ('DbBC', 37), ('ABab', 35), ('dcbc', 34), ('BbaC', 34), ('Bdba', 34), ('bADd', 34), ('CAcb', 33), ('dcba', 32), ('dBaD', 31), ('BdAc', 31), ('BCDd', 31), ('aBcC', 30), ('ACdB', 29), ('ABda', 29)]
+```
 
 For this I had to define a different SQUARE_LINKS array for the bigger board with 4 rows:
 
+```
 SQUARE_LINKS_BIG = (
     # TOP ROW
     ((RIGHT, 1, LEFT), (BOTTOM, 4, TOP),),
     ((LEFT, 0, RIGHT), (BOTTOM, 5, TOP), (RIGHT, 2, LEFT)),
     ((LEFT, 1, RIGHT), (BOTTOM, 6, TOP), (RIGHT, 3, LEFT)),
     ((LEFT, 2, RIGHT), (BOTTOM, 7, TOP)),
-
+    
     # MIDDLE ROW 1
     ((TOP, 0, BOTTOM), (RIGHT, 5, LEFT), (BOTTOM, 8, TOP),),
     ((LEFT, 4, RIGHT), (TOP, 1, BOTTOM), (RIGHT, 6, LEFT), (BOTTOM, 9, TOP)),
@@ -180,6 +187,7 @@ SQUARE_LINKS_BIG = (
     ((LEFT, 13, RIGHT), (TOP, 10, BOTTOM), (RIGHT, 15, LEFT)),
     ((LEFT, 14, RIGHT), (TOP, 11, BOTTOM)),
 )
+```
 
 Now comparing the efficiency of solving the 3x3 puzzle vs the 4x4 puzzle. Again I will do 5 test runs and take the average.
 
