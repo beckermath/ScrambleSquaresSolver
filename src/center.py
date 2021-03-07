@@ -8,7 +8,7 @@ the COMPLEMENTS of the pictures appearing on the piece.
 (3) Place the piece with the HIGHEST value index in the middle.
 '''
 
-def maximize_center(pieces):
+def maximize_center(pieces, num_pieces):
     indicies = {
         "A": 0,
         "a": 0,
@@ -21,7 +21,7 @@ def maximize_center(pieces):
     }
 
     # Count the number of times each picture occurs in the puzzle
-    for i in range(9):
+    for i in range(num_pieces):
         indicies["A"] = indicies["A"] + pieces[i].count('A')
         indicies["a"] = indicies["a"] + pieces[i].count('a')
         indicies["B"] = indicies["B"] + pieces[i].count('B')
@@ -34,7 +34,7 @@ def maximize_center(pieces):
     # Assign a value index to each piece equal to the sum of all the indicies given to the pieces pictures complements
     value_indicies = {}
 
-    for i in range(9):
+    for i in range(num_pieces):
         value_indicies[pieces[i]] = sum_complement_indicies(pieces[i], indicies)
 
     # Pieces sorted in order of their potential to be the middle piece, based on number paired with them
@@ -43,7 +43,7 @@ def maximize_center(pieces):
     print(sorted_value_indicies)
     
     new_pieces = []
-    for i in range (9):
+    for i in range(num_pieces):
         new_pieces.append(sorted_value_indicies[i][0])
 
     return new_pieces
