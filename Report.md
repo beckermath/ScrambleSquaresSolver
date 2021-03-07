@@ -139,7 +139,74 @@ more helpful grid format along with the execution time of the run.
 
 First I need to create a 4x4 or 5x5 puzzle with a solution since none currently exist anywhere I can find.
 
-Here is that puzzle:
+Here is the 4x4 puzzle I decided on taking into account the added pieces value indicies to make a balanced puzzle. The new 4x4 puzzle has the old 3x3 puzzle as its bottom right corner
+
+ABab aBcC dcbc ACdB
+dBaD BdAc bCDB BbaC
+BCDd CDbB DbBC dcba
+Bdba CAcb ABda bADd
+
+Solving the 4x4 puzzle in a spiral as I was doing for the 3x3 puzzle to implement maximize the center in Deliverable 3 doesnt work the same for the 4x4 puzzle. The 4x4 puzzle has an even number of pieces and really has 4 middle pieces. For this reason I brought back the old method of solving the puzzle which places the pieces in this order and havent implemented maximizing the center for the bigger puzzle.
+
+ 1  2  3  4
+ 5  6  7  8
+ 9 10 11 12
+13 14 15 16
+
+For this I had to define a different SQUARE_LINKS array for the bigger board with 4 rows:
+
+SQUARE_LINKS_BIG = (
+    # TOP ROW
+    ((RIGHT, 1, LEFT), (BOTTOM, 4, TOP),),
+    ((LEFT, 0, RIGHT), (BOTTOM, 5, TOP), (RIGHT, 2, LEFT)),
+    ((LEFT, 1, RIGHT), (BOTTOM, 6, TOP), (RIGHT, 3, LEFT)),
+    ((LEFT, 2, RIGHT), (BOTTOM, 7, TOP)),
+
+    # MIDDLE ROW 1
+    ((TOP, 0, BOTTOM), (RIGHT, 5, LEFT), (BOTTOM, 8, TOP),),
+    ((LEFT, 4, RIGHT), (TOP, 1, BOTTOM), (RIGHT, 6, LEFT), (BOTTOM, 9, TOP)),
+    ((LEFT, 5, RIGHT), (TOP, 2, BOTTOM), (RIGHT, 7, LEFT), (BOTTOM, 10, TOP)),
+    ((LEFT, 6, RIGHT), (TOP, 3, BOTTOM), (BOTTOM, 11, TOP)),
+
+    # MIDDLE ROW 2
+    ((TOP, 4, BOTTOM), (RIGHT, 9, LEFT), (BOTTOM, 12, TOP),),
+    ((LEFT, 8, RIGHT), (TOP, 5, BOTTOM), (RIGHT, 10, LEFT), (BOTTOM, 13, TOP)),
+    ((LEFT, 9, RIGHT), (TOP, 6, BOTTOM), (RIGHT, 11, LEFT), (BOTTOM, 14, TOP)),
+    ((LEFT, 10, RIGHT), (TOP, 7, BOTTOM), (BOTTOM, 15, TOP)),
+
+    # BOTTOM ROW 
+    ((TOP, 8, BOTTOM), (RIGHT, 13, LEFT)),
+    ((LEFT, 12, RIGHT), (TOP, 9, BOTTOM), (RIGHT, 14, LEFT)),
+    ((LEFT, 13, RIGHT), (TOP, 10, BOTTOM), (RIGHT, 15, LEFT)),
+    ((LEFT, 14, RIGHT), (TOP, 11, BOTTOM)),
+)
+
+Now comparing the efficiency of solving the 3x3 puzzle vs the 4x4 puzzle. Again I will do 5 test runs and take the average.
+
+3x3 puzzle:
+
+0.01832\
+0.00872\
+0.05721\
+0.03720\
+0.02396\
+
+Average: 0.029082\
+
+4x4 puzzle:
+
+3.19725\
+1.96208\
+1.23899\
+2.04518\
+0.12017\
+
+Average: 1.712734\
+
+The numbers show that solving the 4x4 puzzle takes significantly longer. As the puzzle grows the time it takes to sovle it grows exponentially. I would guess that if I were to expand the puzzle to 5x5 or 6x6 with the current algorithm the time taken would be too much for the program to be convienient.
+
+
+
 
 
 
