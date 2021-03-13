@@ -86,9 +86,11 @@ def main():
             'BCDd', 'CDbB', 'DbBC', 'dcba',
             'Bdba', 'CAcb', 'ABda', 'bADd'
         ]
+        
         LINKS = SQUARE_LINKS_BIG
         empty_board = [None for i in range(16)]
         num_pieces = 16
+        maximize_center(PIECES, num_pieces)
 
     
     if maximize_center_select == "y":
