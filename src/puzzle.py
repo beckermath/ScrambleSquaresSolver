@@ -18,6 +18,11 @@ PIECES = [
     'Bdba', 'CAcb', 'ABda',
 ]
 
+PIECES_TWO_BY_TWO = [
+    'BCDd', 'CDbB',
+    'Bdba', 'CAcb'
+]
+
 BOTTOM, LEFT, TOP, RIGHT = 0, 1, 2, 3
 
 SQUARE_LINKS = (
@@ -34,7 +39,14 @@ SQUARE_LINKS = (
     ((LEFT, 7, RIGHT), (TOP, 5, BOTTOM)),
 )
 
-# DOUBLE CHECK THIS
+SQUARE_LINKS_SMALL = (
+    ((RIGHT, 1, LEFT), (BOTTOM, 2, TOP)),
+    ((LEFT, 0, RIGHT), (BOTTOM, 3, TOP)),
+    ((TOP, 0, BOTTOM), (RIGHT, 3, LEFT)),
+    ((LEFT, 2, RIGHT), (TOP, 1, BOTTOM))
+)
+
+
 SQUARE_LINKS_BIG = (
     # TOP ROW
     ((RIGHT, 1, LEFT), (BOTTOM, 4, TOP),),
@@ -61,7 +73,7 @@ SQUARE_LINKS_BIG = (
     ((LEFT, 14, RIGHT), (TOP, 11, BOTTOM)),
 )
 
-LINKS = SQUARE_LINKS
+LINKS = SQUARE_LINKS_SMALL
 
 def main():
     global PIECES
@@ -75,9 +87,14 @@ def main():
         maximize_center_select = "n"
         display_graph = "n"
 
+
+    PIECES = [
+        'BCDd', 'CDbB',
+        'Bdba', 'CAcb'
+    ]
     
-    num_pieces = 9
-    empty_board = [None for i in range(9)]
+    num_pieces = 4
+    empty_board = [None for i in range(4)]
 
     if big_puzzle_select == "y":
         PIECES = [
@@ -95,7 +112,6 @@ def main():
     
     if maximize_center_select == "y":
         PIECES = maximize_center(PIECES, num_pieces)
-
     else:
         shuffle(PIECES)
         print("Pieces in random order")
@@ -109,26 +125,23 @@ def main():
     else:
         start_time = time.time()
         solvable, solution = solve_normal(PIECES, empty_board)
+        print(solution)
         end_time = time.time()
 
-    if solvable:
-        if maximize_center_select == "y":
-            solution = transform_board(solution)
+    # if solvable:
+    #     if maximize_center_select == "y":
+    #         solution = transform_board(solution)
         
-        if big_puzzle_select == "y":
-            print_big_solution(solution, start_time, end_time)
-        else:
-            print_solution(solution, start_time, end_time)
+    #     if big_puzzle_select == "y":
+    #         print_big_solution(solution, start_time, end_time)
+    #     else:
+    #         print_solution(solution, start_time, end_time)
 
-        if display_graph == "y":
-            build_solution_graph(solution)
+    #     if display_graph == "y":
+    #         build_solution_graph(solution)
         
-    else:
-        print("provided board is unsolvable")
-
-
-
-
+    # else:
+    #     print("provided board is unsolvable")
 
 
 def solve_spiral(pieces, board):
