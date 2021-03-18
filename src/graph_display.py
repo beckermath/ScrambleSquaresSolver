@@ -18,7 +18,7 @@ def build_solution_graph(solution):
     }
 
     edges = []
-    labels = {}
+
     #top row
     edges.append((solution[0][3], solution[0][0]))
 
@@ -87,5 +87,46 @@ def build_solution_graph(solution):
     pink_patch = mpatches.Patch(color='#FF00FF', label='9')
 
     plt.legend(handles=[red_patch, green_patch, cyan_patch, orange_patch, blue_patch, black_patch, yellow_patch, purple_patch, pink_patch], loc="best", ncol=3)
+
+    plt.show()
+
+def build_solution_graph_two_sided(solution):
+    DG = nx.MultiDiGraph()
+    DG.add_nodes_from(['A', 'B', 'C', 'D', 'a', 'b', 'c', 'd'])
+
+    pos = {
+        'a' : (5, 10),
+        'b' : (10, 10),
+        'c' : (15, 10),
+        'd' : (20, 10),
+        'A' : (5, 15),
+        'B' : (10, 15),
+        'C' : (15, 15),
+        'D' : (20, 15),
+    }
+
+    edges = []
+    
+    edges.append((solution[0][3], solution[0][0]))
+    edges.append((solution[1][0], solution[1][1]))
+
+    edges.append((solution[2][2], solution[2][3]))
+    edges.append((solution[3][1], solution[3][2]))
+
+    DG.add_edges_from(edges)
+    nx.draw_networkx_nodes(DG, pos, node_size = 200, alpha= 1)
+    nx.draw_networkx_labels(DG, pos, font_size=10)
+
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.0',edgelist=[edges[0]], edge_color="#DF2020", arrows=True)
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.0',edgelist=[edges[1]], edge_color="#FF8000", arrows=True)
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.0',edgelist=[edges[2]], edge_color="#FFFF00", arrows=True)
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.0',edgelist=[edges[3]], edge_color="#80FF00", arrows=True)
+
+    red_patch = mpatches.Patch(color='#DF2020', label='1')
+    orange_patch = mpatches.Patch(color='#FF8000', label='2')
+    yellow_patch = mpatches.Patch(color='#FFFF00', label='3')
+    green_patch = mpatches.Patch(color='#80FF00', label='4')
+
+    plt.legend(handles=[red_patch, orange_patch, yellow_patch, green_patch], loc="best", ncol=1)
 
     plt.show()
