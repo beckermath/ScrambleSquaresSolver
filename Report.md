@@ -213,6 +213,64 @@ Average: 1.712734\
 
 The numbers show that solving the 4x4 puzzle takes significantly longer. As the puzzle grows the time it takes to sovle it grows exponentially. I would guess that if I were to expand the puzzle to 5x5 or 6x6 with the current algorithm the time taken would be too much for the program to be convienient.
 
+# Deliverable 4
+
+For the two sided puzzle I made a quick 2x2 puzzle to make things simpler and so the recording and solution graphs are clearer as they are in the second research paper in the readme. The 2x2 puzzle has more solutions than the 3x3, here is an example of a 2x2 solution graph similar to what we see in the research paper on page 6
+
+![](images/2x2solution_graph.png)
+
+The solutions graph are solutions according to these 3 rules:
+
+1. Each edge is a different color.
+2. The in-degree of each vertex is equal to the out-degree of its
+complement.
+3. If X −→ A −→ Y is a directed path in Gs(P), then Y must be
+the complement of X.
+
+The goal of this deliverable is to create a method of generating 2x2 two-sided puzzles and then observe thier solution graphs with these rules related to the proof in mind.
+
+Once the program solves the 2x2 puzzle one method of generating a two sided puzzle is to just to add the same images to the other side, or some have some rule for changing the images for the other side so its a little more interesting. Another method is to generate a random picture for each link in the solution and put it on the other side.
+
+Example two sided puzzle using random method:
+
+'''
+
+dbaB cbCA 
+BCDb dBCD
+
+
+dbaC CcCA 
+BCDB dbcD
+
+side 1:
+
+  a     C
+b   B b   A
+  d     c
+
+  D     C
+C   b B   D
+  B     d
+
+
+side 2 (generated with random method):
+
+  a     C
+b   C c   A
+  d     C
+
+  D     c
+C   B b   D
+  B     d
+
+
+'''
+
+Here is a nice looking solution graph mapping edges from both sides of the puzzle above:
+
+![](images/2x2two-sided_solution_graph.png)
+
+As you can see a two sided puzzle is just two different solutions graphs each following the rules layered on top of eachother.The different colors represent the different pieces and now each have two edges since we now have two sides and one solution graph edge per piece for all for pieces with the 2x2 puzzle. 
 
 
 

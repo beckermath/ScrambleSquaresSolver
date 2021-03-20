@@ -34,6 +34,8 @@ def main():
             solution[2],
             solution[3],
         ))
+        
+        temp = solution.copy()
         other_side = generate_random_other_side(solution)
 
         print("\n{} {} \n{} {}\n".format(
@@ -43,7 +45,9 @@ def main():
             other_side[3],
         ))
 
-        build_solution_graph_two_sided(solution, other_side)
+        both = True
+        build_solution_graph_two_sided(temp, other_side, both)
+        
 
     else:
         print("provided board has no solution")
