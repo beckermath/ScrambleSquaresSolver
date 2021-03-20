@@ -233,7 +233,7 @@ Once the program solves the 2x2 puzzle one method of generating a two sided puzz
 
 Example two sided puzzle using random method:
 
-'''
+```
 
 dbaB cbCA 
 BCDb dBCD
@@ -264,7 +264,7 @@ C   B b   D
   B     d
 
 
-'''
+```
 
 Here is a nice looking solution graph mapping edges from both sides of the puzzle above:
 
