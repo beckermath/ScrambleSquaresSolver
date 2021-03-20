@@ -90,7 +90,7 @@ def build_solution_graph(solution):
 
     plt.show()
 
-def build_solution_graph_two_sided(solution):
+def build_solution_graph_two_sided(solution, other_side):
     DG = nx.MultiDiGraph()
     DG.add_nodes_from(['A', 'B', 'C', 'D', 'a', 'b', 'c', 'd'])
 
@@ -113,6 +113,12 @@ def build_solution_graph_two_sided(solution):
     edges.append((solution[2][2], solution[2][3]))
     edges.append((solution[3][1], solution[3][2]))
 
+    edges.append((other_side[0][3], other_side[0][0]))
+    edges.append((other_side[1][0], other_side[1][1]))
+
+    edges.append((other_side[2][2], other_side[2][3]))
+    edges.append((other_side[3][1], other_side[3][2]))
+
     DG.add_edges_from(edges)
     nx.draw_networkx_nodes(DG, pos, node_size = 200, alpha= 1)
     nx.draw_networkx_labels(DG, pos, font_size=10)
@@ -121,6 +127,11 @@ def build_solution_graph_two_sided(solution):
     nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.0',edgelist=[edges[1]], edge_color="#FF8000", arrows=True)
     nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.0',edgelist=[edges[2]], edge_color="#FFFF00", arrows=True)
     nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.0',edgelist=[edges[3]], edge_color="#80FF00", arrows=True)
+
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.2',edgelist=[edges[4]], edge_color="#DF2020", arrows=True)
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.2',edgelist=[edges[5]], edge_color="#FF8000", arrows=True)
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.2',edgelist=[edges[6]], edge_color="#FFFF00", arrows=True)
+    nx.draw_networkx_edges(DG, pos, connectionstyle='arc3, rad = 0.2',edgelist=[edges[7]], edge_color="#80FF00", arrows=True)
 
     red_patch = mpatches.Patch(color='#DF2020', label='1')
     orange_patch = mpatches.Patch(color='#FF8000', label='2')

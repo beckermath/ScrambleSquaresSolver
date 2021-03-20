@@ -1,5 +1,6 @@
 from random import shuffle
 from graph_display import build_solution_graph_two_sided
+import random
 
 PIECES = [
     'BCDd', 'CDbB',
@@ -33,7 +34,17 @@ def main():
             solution[2],
             solution[3],
         ))
-        build_solution_graph_two_sided(solution)
+        other_side = generate_random_other_side(solution)
+
+        print("\n{} {} \n{} {}\n".format(
+            other_side[0],
+            other_side[1],
+            other_side[2],
+            other_side[3],
+        ))
+
+        build_solution_graph_two_sided(solution, other_side)
+
     else:
         print("provided board has no solution")
     
@@ -63,6 +74,69 @@ def solve(pieces, board):
                     return True, solved_board
 
     return False, None 
+
+def generate_random_other_side(solution):
+
+    img_list = ['A', 'B', 'C', 'D', 'a', 'b', 'c', 'd']
+    img = []
+    
+    for i in range(4):
+        img.append(random.choice(img_list))
+
+    # gives each link a new random image on other side 
+    solution[0] = solution[0][:3] + img[0] + solution[0][3+1:]
+    solution[1] = solution[1][:1] + case_switch(img[0]) + solution[1][1+1:]
+
+    solution[1] = solution[1][:0] + img[1] + solution[1][0+1:]
+    solution[3] = solution[3][:2] + case_switch(img[1]) + solution[3][2+1:]
+
+    solution[2] = solution[2][:2] + img[2] + solution[2][2+1:]
+    solution[0] = solution[0][:0] + case_switch(img[2]) + solution[0][0+1:]
+
+    solution[3] = solution[3][:1] + img[3] + solution[3][1+1:]
+    solution[2] = solution[2][:3] + case_switch(img[3]) + solution[2][3+1:]
+
+    return solution
+
+def case_switch(img):
+    
+    if img.islower():
+        return img.upper()
+    else:
+        return img.lower()
+
+def generate_other_side(solution):
+    for i in range(4):
+        piece = ''
+        for j in range(4):
+            # img = reflect_image(solution[i][j])
+            img = solution[i][j]
+            if img.islower():
+                img.upper()
+            else:
+                img.lower()
+            piece += img
+        solution[i] = piece
+    
+    return solution
+            
+def reflect_image(img):
+    if img == 'A':
+        return 'd'
+    elif img == 'B':
+        return 'c'
+    elif img == 'C':
+        return 'b'
+    elif img == 'D':
+        return 'a'
+    elif img == 'a':
+        return 'D'
+    elif img == 'b':
+        return 'C'
+    elif img == 'c':
+        return 'B'
+    elif img == 'd':
+        return 'A'
 
 def options(items):
     for idx, choice in enumerate(items):

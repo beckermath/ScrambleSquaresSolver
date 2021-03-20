@@ -110,6 +110,10 @@ def solve_normal(pieces, board):
 
     return False, None 
 
+
+
+     
+
 def options(items):
     for idx, choice in enumerate(items):
         remainder = items[0:idx] + items[idx + 1:]
