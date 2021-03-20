@@ -235,13 +235,6 @@ Example two sided puzzle using random method:
 
 ```
 
-dbaB cbCA 
-BCDb dBCD
-
-
-dbaC CcCA 
-BCDB dbcD
-
 side 1:
 
   a     C
